@@ -179,22 +179,6 @@ for (var i in arr){
 
 }
 
-// circles.selectAll("circle")
-//       .on("mouseover",function(d,i){
-//         console.log(d);
-//         console.log(i);
-//         d3.select(this).style("opacity","0.4");
-        
-//         var name = d3.select(this)[0];
-//         //console.log("name:");
-//         //console.log(name);
-//         circles.append("text").attr("x",x).attr("y",y).text(""+d3.select(this).id);
-//           console.log(d3.select(this)[0]);
-//       })
-//       .on("mouseout",function(){
-//         d3.select(this).style("opacity","0.8");
-//       });
-
 });
 
   // labels.selectAll("labels")
@@ -213,16 +197,6 @@ function redraw(year){
     
   
 }
-// function redraw(year) {
-//       circles.selectAll("circle")
-// 	  .transition()
-//           .duration(1000).ease("linear")
-//           .attr("r",  function(d) { return (+d[year])*scalefactor; })
-//           .attr("title",  function(d) { return d["country"]+": "+Math.round(d[year]); });
-
-//       labels.selectAll("text")
-//           .text(function(d) { return Math.round(d[year]); });
-// }
 
 });
 
