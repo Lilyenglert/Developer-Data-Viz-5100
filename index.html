@@ -1,1 +1,59 @@
-<h1> Hello! </h1>
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  </style>
+</head>
+
+<body>
+  <!-- HTML for Salary graph starts here -->
+  <div class="main" id="salary_container">
+    <div id="input-container">
+      <!-- this should contan input fields for Location, Gender, Race/Ethnicity, Education,  -->
+      <div class="quiz">
+        <div class="question">
+            <p> Country
+            <select class="line_input" id="qCountry" >
+              <option value="United States">United States</option>
+            </select>
+            </p>
+          </div>
+          <div class="question">
+            <p> Education
+            <select class="line_input" id="qEdu">
+              <option value="Some college">Some College</option>
+              <option value="Bachelor">Bachelor's Degree</option>
+              <option value="Master">Master's Degree</option>
+            </select>
+            </p>
+          </div>
+          <div class="question">
+            <p> Developer type
+            <select class="line_input" id="qDev">
+              <option value="Full-stack developer">Full-stack</option>
+              <option value="Front-end developer">Front-end</option>
+              <option value="Back-end developer">Back-end</option>
+            </select>
+            </p>
+          </div>
+        <div class="question">
+          <p> Gender.
+            <select class="line_input" id="qGender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Non-binary, genderqueer, or gender non-conforming">Non-binary, genderqueer</option>
+            </select>
+          </p>
+        </div>
+      </div>
+    </div>
+    <svg class="line-graph"></svg>
+  </div>
+
+  
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="salary.js"></script>
+</body>
+</html>

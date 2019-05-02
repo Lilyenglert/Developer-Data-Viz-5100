@@ -1,0 +1,7 @@
+.tick line{
+  opacity: 0.2;
+  stroke-dasharray: 2 2; 
+}
+.question{
+  display: inline-block;
+}
