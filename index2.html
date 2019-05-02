@@ -104,7 +104,7 @@ console.log(collection.features);
 var scalefactor=1./50. ;
 
 var arr = {};
-const newData = d3.csv("survey_results_public.csv",function(data){
+const newData = d3.csv("full_data.csv",function(data){
   for(var i = 0; i < data.length; i++){
     var key = data[i].Country;
     if(arr[key] != undefined)
