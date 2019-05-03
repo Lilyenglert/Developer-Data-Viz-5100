@@ -8,6 +8,19 @@
 </head>
 
 <body>
+  <!-- Start Map -->
+  <h2>	
+  Developers accross the world over past 5 years
+  </h2>
+  
+  <div id="graph"></div>
+  
+  <p>
+  <label for="year">Year :</label>
+  <input type="text" id="year" style="border:0; color:#f6931f; font-weight:bold; " />
+  </p>
+  <div id="slider" style="width: 200px;"></div>
+
   <!-- HTML for Salary graph starts here -->
   <div class="main" id="salary_container">
     <div id="input-container">
@@ -52,8 +65,12 @@
     <svg class="line-graph"></svg>
   </div>
 
-  
+  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
+  <script src="http://d3js.org/d3.v2.js"></script>
   <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="map.js"></script>
   <script src="salary.js"></script>
 </body>
 </html>
