@@ -1,14 +1,14 @@
-$("#slider").slider({
-	value:2013,
-	min: 2013,
-	max: 2018,
-	step: 1,
-	slide: function( event, ui ) {
-		$("#year").val(ui.value);
-		redraw(ui.value.toString());
-	}
-});
-$("#year").val($("#slider").slider("value") );
+// $("#slider").slider({
+// 	value:2013,
+// 	min: 2013,
+// 	max: 2018,
+// 	step: 1,
+// 	slide: function( event, ui ) {
+// 		$("#year").val(ui.value);
+// 		redraw(ui.value.toString());
+// 	}
+// });
+// $("#year").val($("#slider").slider("value") );
 
 var w = 1200;
 var h = 500;
