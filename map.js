@@ -92,6 +92,7 @@ for (var i in arr){
       })
         .attr("id",""+i)
 	.attr("fill","steelblue")
+	.style("opacity","0.8")
         .on("mouseover",function(d){
           console.log(this.id);
           var name = "" + this.id;
