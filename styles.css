@@ -27,13 +27,4 @@ circle {
  stroke: #fff;
  stroke-width:1;
 }
-.links line {
-  stroke: #999;
-  stroke-width:2;
-  stroke-opacity: 0.5;
-}
 
-.nodes circle {
-  stroke: #fff;
-  stroke-width: 1.5px;
-}
