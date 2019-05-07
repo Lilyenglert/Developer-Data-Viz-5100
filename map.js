@@ -1,14 +1,4 @@
-// $("#slider").slider({
-// 	value:2013,
-// 	min: 2013,
-// 	max: 2018,
-// 	step: 1,
-// 	slide: function( event, ui ) {
-// 		$("#year").val(ui.value);
-// 		redraw(ui.value.toString());
-// 	}
-// });
-// $("#year").val($("#slider").slider("value") );
+
 
 var w = 1200;
 var h = 500;
@@ -45,10 +35,7 @@ d3.json("world-countries.json").then(function (collection){
                     .text(d.properties.name);})
       .on("mouseout", function(d) {
         d3.select(this).style("fill","#ccc");})
-// console.log("data:");
-// console.log(collection.features);
 
-var scalefactor=1./50. ;
 
 var arr = {};
 d3.csv("full_data.csv").then(function (data) {
@@ -105,19 +92,13 @@ for (var i in arr){
       })
         .attr("id",""+i)
         .on("mouseover",function(d){
-          // console.log(d3.select(this)[0][0].attributes[1]);
-          // console.log(d3.select(this)[0][0].attributes[0]);
           console.log(this.id);
           var name = "" + this.id;
           console.log(name);
-          // console.log(d3.select(this)[0]);
+
           var locX = this;
           var locY = this.attributes[1].nodeValue;
-          // console.log(locX);
-          // console.log(locY);
-
-          // var x = xy([locX,locY])[0];
-          //console.log(locX);
+ 
           if (name=="United States of America"){
             console.log("us:");
             console.log(arr[name]);
@@ -135,21 +116,12 @@ for (var i in arr){
 
 });
 
-  // labels.selectAll("labels")
-  //     .data(csv)
-  //   .enter()
-  //   .append("svg:text")
-  //       .attr("x", function(d, i) { return xy([+d["longitude"],+d["latitude"]])[0]; })
-  //       .attr("y", function(d, i) { return xy([+d["longitude"],+d["latitude"]])[1]; })
-  //       .attr("dy", "0.3em")
-  //       .attr("text-anchor", "middle")
-  //       .text(function(d) { return Math.round(d["1990"]); });
 
 
 });
-function redraw(year){
+// function redraw(year){
 
-}
+// }
 
 
 
