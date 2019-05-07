@@ -91,6 +91,7 @@ for (var i in arr){
         return arr[i]/20;
       })
         .attr("id",""+i)
+	.attr("fill","steelblue")
         .on("mouseover",function(d){
           console.log(this.id);
           var name = "" + this.id;
