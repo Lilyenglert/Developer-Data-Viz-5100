@@ -1,6 +1,6 @@
-var svg = d3.select("svg");
-var width = svg.attr("width");
-var height = svg.attr("height");
+var width = 1000;
+var height = 900;
+var svg = d3.select("#force").insert("svg:svg").attr("width",width).attr("height",height);
 
 
 var simulation = d3.forceSimulation()
