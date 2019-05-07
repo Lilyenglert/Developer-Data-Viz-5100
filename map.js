@@ -93,6 +93,8 @@ for (var i in arr){
         .attr("id",""+i)
 	.attr("fill","steelblue")
 	.attr("opacity","0.8")
+	.attr("stroke","#fff")
+	.attr("stroke-width","1")
         .on("mouseover",function(d){
           console.log(this.id);
           var name = "" + this.id;
@@ -118,12 +120,7 @@ for (var i in arr){
 
 });
 
-
-
 });
-// function redraw(year){
-
-// }
 
 
 
