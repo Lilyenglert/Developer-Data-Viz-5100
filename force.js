@@ -1,3 +1,6 @@
+// Tick and Drag code adapted from https://bl.ocks.org/heybignick/3faf257bbbbc7743bb72310d03b86ee8
+
+
 var width = 1000;
 var height = 600;
 var svg = d3.select("#force").insert("svg:svg").attr("width",width).attr("height",height);

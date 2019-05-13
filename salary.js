@@ -93,8 +93,7 @@ d3.csv("salarydata.csv").then(function (data) {
   
   var tooltip = d3.select("body").append("div")	
     .attr("class", "tooltip")				
-    .style("opacity", 0)
-    .style("background-color", "gray");
+    .style("opacity", 0);
 
   update("United Kingdom", "Female", "Master", "Full-stack developer");
 
@@ -125,15 +124,15 @@ d3.csv("salarydata.csv").then(function (data) {
       i = i+1;
     });
 
-    var allDataArrays = [[countryVals,'gray', '.15em', .3, "gray"],[genderVals,'gray', '.15em', .3, "gray"], [eduVals, 'gray', '.15em', .3, "gray"], [jobVals, 'gray', '.15em', .3, "gray"], [youVals, "#3b18b5", '.3em', 1, "#3b18b5"]];
+    var allDataArrays = [[countryVals,'gray', '.15em', .3, "gray", "Country"],[genderVals,'gray', '.15em', .3, "gray", "Gender"], [eduVals, 'gray', '.15em', .3, "gray", "Education"], [jobVals, 'gray', '.15em', .3, "gray", "Developer"], [youVals, "#3b18b5", '.3em', 1, "#3b18b5", "Predicted"]];
 
     d3.selectAll("path.line").remove()
     
     allDataArrays.forEach(set => {
-      addLine(set[0], svg, set[1], set[2], set[3], set[4])
+      addLine(set[0], svg, set[1], set[2], set[3], set[4], set[5])
     });
 
-    function addLine(dataArray, svg, color, width, opacity, secondcolor){
+    function addLine(dataArray, svg, color, width, opacity, secondcolor, inner_text){
       svg.append("path")
       .datum(dataArray)
       .attr("class", "line")
@@ -147,8 +146,9 @@ d3.csv("salarydata.csv").then(function (data) {
         tooltip.transition()		
           .duration(100)		
           .style("opacity", .9);
-        tooltip.style("display", "inline");
-        tooltip.text(d3.event.pageX + ", " + d3.event.pageY)
+        tooltip.style("display", "inline")
+          .style("background-color", color);
+        tooltip.text(inner_text + " ")
           .style("left", (d3.event.pageX - 34) + "px")
           .style("top", (d3.event.pageY - 12) + "px");	
         d3.select(this)
