@@ -3,22 +3,46 @@
 // average salery for country based on experience 
 let allData;
 // dictionaries for line values
-var raceData = {};
+var countryData = {};
 var genderData = {};
 var jobData = {};
 var eduData = {};
 // input values: 
 const experienceArray = [0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30]
 
-const margin = {top: 30, right: 80, bottom: 30, left: 80};
-var width = 900 - margin.left - margin.right;
-var height = 500 - margin.top - margin.bottom;
-
 
 d3.csv("salarydata.csv").then(function (data) {
   allData = data;
-  const salaryMin = d3.min(allData, function (d) {return parseInt(d["ConvertedSalary"])});
-  const salaryMax = d3.max(allData, function (d) {return parseInt(d["ConvertedSalary"])});
+
+  var country_select = document.getElementById("qCountry");
+  var edu_select = document.getElementById("qEdu");
+  var countries_array = [];
+  var edu_array = [];
+
+  data.forEach(element => {
+    countries_array.push(element["Country"])
+    edu_array.push(element["FormalEducation"])
+  });
+
+  let unique_country = new Set(countries_array);
+  let unique_edu = new Set(edu_array);
+
+  unique_country.forEach(country => {
+    var sel = document.createElement("option");
+    sel.textContent = country;
+    sel.value = country;
+    country_select.appendChild(sel); 
+  });
+  unique_edu.forEach(edu => {
+    var sel = document.createElement("option");
+    sel.textContent = edu;
+    sel.value = edu;
+    edu_select.appendChild(sel); 
+  });
+
+  const margin = {top: 30, right: 80, bottom: 50, left: 80};
+  var width = 900 - margin.left - margin.right;
+  var height = 500 - margin.top - margin.bottom;
 
   var svg = d3.select(".line-graph")
     .attr("width", width + margin.left + margin.right)
@@ -28,7 +52,7 @@ d3.csv("salarydata.csv").then(function (data) {
 
   const salaryScale = d3.scaleLinear()
     // .exponent(.2)
-    .domain([200000, 20000])
+    .domain([250000, 0])
     .range([0, height]);
   
   const experienceScale = d3.scaleLinear()
@@ -45,6 +69,12 @@ d3.csv("salarydata.csv").then(function (data) {
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(experienceScale).tickSize(0));
 
+  svg.append("text")
+    .attr("class", "label-style")          
+    .attr("transform", "translate(" + (width/2) + " ," + (height + 40) + ")")
+    .style("text-anchor", "middle")
+    .text("Years of Experience");
+
   svg.append("g")
     .attr("class", "salaxis")
     .attr("width", width)
@@ -59,25 +89,28 @@ d3.csv("salarydata.csv").then(function (data) {
     .y(function(d) {return salaryScale(d.value);})
     .curve(d3.curveMonotoneX);
 
-  update("Female", "Master", "Full-stack developer");
+  update("United Kingdom", "Female", "Master", "Full-stack developer");
 
   d3.selectAll(".line_input").on("change", function(){
-    // console.log(d3.select("#qGender").property("value"));
-    update(d3.select("#qGender").property("value"), d3.select("#qEdu").property("value"), d3.select("#qDev").property("value"));
+    console.log(d3.select("#qCountry").property("value"))
+    update(d3.select("#qCountry").property("value"), d3.select("#qGender").property("value"), d3.select("#qEdu").property("value"), d3.select("#qDev").property("value"));
   });
+
   
-  function update(genderVal, eduVal, devVal){
-    console.log(devVal);
+  function update(countryVal, genderVal, eduVal, devVal){
+    var countryVals = getAverageFor("Country", countryVal, countryData, experienceArray);
     var genderVals = getAverageFor("Gender", genderVal, genderData, experienceArray);
     var eduVals = getAverageFor("FormalEducation", eduVal, eduData, experienceArray);
     var jobVals = getAverageFor("DevType", devVal, jobData, experienceArray);
     var youVals = [];
     var i=0;
     var sums;
+    console.log(countryVals);
     experienceArray.forEach(year => {
       sums = 0;
-      sums = genderVals[i].value + eduVals[i].value + jobVals[i].value;
-      var avg = sums/3;
+      sums = countryVals[i].value*3 + genderVals[i].value + eduVals[i].value + jobVals[i].value;
+      var avg = sums/6;
+      console.log(avg)
       youVals.push({
         "key": year,
         'value': avg, 
@@ -85,7 +118,7 @@ d3.csv("salarydata.csv").then(function (data) {
       i = i+1;
     });
 
-    var allDataArrays = [[genderVals,'gray', '.15em', .3, "blue"], [eduVals, 'gray', '.15em', .3, "pink"], [jobVals, 'gray', '.15em', .3, "yellow"], [youVals, "#3b18b5", '.3em', 1, "#3b18b5"]];
+    var allDataArrays = [[countryVals,'gray', '.15em', .3, "gray"],[genderVals,'gray', '.15em', .3, "gray"], [eduVals, 'gray', '.15em', .3, "gray"], [jobVals, 'gray', '.15em', .3, "gray"], [youVals, "#3b18b5", '.3em', 1, "#3b18b5"]];
 
     d3.selectAll("path.line").remove()
     
@@ -117,8 +150,6 @@ d3.csv("salarydata.csv").then(function (data) {
 
   };
 
-  // append the axis to the svg
-
   // calculate the line for this one set of data
 
   function getAverageFor(field, value, appendArray, experienceArray){
@@ -136,7 +167,8 @@ d3.csv("salarydata.csv").then(function (data) {
         };
       });
       if (count == 0){
-        var newval = add.value
+        var newval = 10000
+        console.log("newval")
         add = {
           "key" : year,
           'value': newval
