@@ -5,21 +5,39 @@
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="styles.css">
   </style>
+
 </head>
 
 <body>
   <!-- Start Map -->
-  <h2>	
+<h1>
+  Get to Know Your Fellow Coders: How Do You Stack(overflow) Up?
+</h1>
+
+  <h2>
   Developers accross the World in 2018
   </h2>
-  
+
   <div id="graph"></div>
-  
+
   <p>
 
   <input type="text" id="year" style="border:0; color:#f6931f; font-weight:bold; " />
   </p>
   <div id="slider" style="width: 200px;"></div>
+
+  <!--   start tech network graph -->
+    <div id = "force">
+      <h2> Technology Ecosystem in 2018 </h2>
+    </div>
+
+
+    <script src="https://d3js.org/d3.v2.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="map.js"></script>
+    <script src="salary.js"></script>
+    <script src="force.js"></script>
+  </body>
 
   <!-- HTML for Salary graph starts here -->
   <h2> Developers Salary in 2018 </h2>
@@ -65,17 +83,6 @@
     </div>
     <svg class="line-graph"></svg>
   </div>
-  
-<!--   start tech network graph -->
-  <div id = "force">
-    <h2> Technology Ecosystems Explored through Tag Correlations </h2>
-  </div>
 
 
-  <script src="https://d3js.org/d3.v2.js"></script>
-  <script src="https://d3js.org/d3.v5.min.js"></script>
-  <script src="map.js"></script>
-  <script src="salary.js"></script>
-  <script src="force.js"></script>
-</body>
 </html>

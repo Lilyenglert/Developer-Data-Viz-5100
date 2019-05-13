@@ -27,11 +27,11 @@ const requestData = async() => {
     .data(nodes)
     .enter()
     .append("g");
-    
+
   var circles = node.append("circle")
       .attr("r", function(d){
         var size = d.nodesize;
-        if (size < 100)
+        if (size < 1000)
           return size/7;
         return size/9;
       })
