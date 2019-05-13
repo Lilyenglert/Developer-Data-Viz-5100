@@ -7,7 +7,20 @@
 }
 
 h2{
-  margin: 40px 0 40px 0;
+  margin: 100px 0 40px 0;
+  font-family: "Andale Mono", AndaleMono, monospace;
+}
+
+h1{
+  font-family: "Andale Mono", AndaleMono, monospace;
+}
+
+text{
+  font-size: 9px;
+}
+
+p{
+  font-size: 14px;
 }
 
 body {
@@ -43,7 +56,8 @@ body {
 }
 
 .line-graph{
-  padding: 5%;
+  padding: 0 5% 5% 5%;
+  font: 10px;
 }
 
 /* tooltip adapted from https://bl.ocks.org/mbostock/1087001 */
