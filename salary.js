@@ -1,4 +1,5 @@
 // custom axis adapted from:  https://bl.ocks.org/mbostock/3371592
+// tooltip adapted from https://bl.ocks.org/mbostock/1087001
 
 // average salery for country based on experience 
 let allData;
@@ -63,7 +64,6 @@ d3.csv("salarydata.csv").then(function (data) {
     .tickSize(-width)
     .tickFormat(d3.format("$,"));
 
-
   svg.append("g")
     .attr("class", "expaxis")
     .attr("transform", "translate(0," + height + ")")
@@ -87,7 +87,14 @@ d3.csv("salarydata.csv").then(function (data) {
   var line = d3.line()
     .x(function(d) {return experienceScale(d.key);})
     .y(function(d) {return salaryScale(d.value);})
+    // .attr("class")
     .curve(d3.curveMonotoneX);
+
+  
+  var tooltip = d3.select("body").append("div")	
+    .attr("class", "tooltip")				
+    .style("opacity", 0)
+    .style("background-color", "gray");
 
   update("United Kingdom", "Female", "Master", "Full-stack developer");
 
@@ -137,6 +144,13 @@ d3.csv("salarydata.csv").then(function (data) {
       .attr("stroke-width", width)
       .attr("z-index", "-1")
       .on("mouseover", function() { 
+        tooltip.transition()		
+          .duration(100)		
+          .style("opacity", .9);
+        tooltip.style("display", "inline");
+        tooltip.text(d3.event.pageX + ", " + d3.event.pageY)
+          .style("left", (d3.event.pageX - 34) + "px")
+          .style("top", (d3.event.pageY - 12) + "px");	
         d3.select(this)
           .attr("opacity", "1")
           .attr("stroke", secondcolor);
@@ -145,6 +159,9 @@ d3.csv("salarydata.csv").then(function (data) {
         d3.select(this).attr('stroke', color)
           .attr("opacity", opacity)
           .attr("stroke", color);
+        tooltip.transition()		
+          .duration(1000)		
+          .style("opacity", 0);
       });
     };
 

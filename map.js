@@ -30,7 +30,7 @@ d3.json("world-countries.json").then(function (collection){
       .enter().append("svg:path")
       .attr("d", path)
       .on("mouseover", function(d) {
-                d3.select(this).style("fill","#6C0")
+                d3.select(this).style("fill","gray")
                     .append("svg:title")
                     .text(d.properties.name);})
       .on("mouseout", function(d) {

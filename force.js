@@ -1,5 +1,5 @@
 var width = 1000;
-var height = 900;
+var height = 600;
 var svg = d3.select("#force").insert("svg:svg").attr("width",width).attr("height",height);
 
 
@@ -32,8 +32,8 @@ const requestData = async() => {
       .attr("r", function(d){
         var size = d.nodesize;
         if (size < 1000)
-          return size/7;
-        return size/9;
+          return size/8;
+        return size/2;
       })
       .attr("fill", function(d) { return colorScale(d.group) })
       .call(d3.drag()
@@ -69,6 +69,7 @@ const requestData = async() => {
         .attr("transform", function(d) {
           return "translate(" + d.x + "," + d.y + ")";
         })
+
   }
 
 };
